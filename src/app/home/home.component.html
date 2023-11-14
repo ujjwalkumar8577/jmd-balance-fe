@@ -1,0 +1,37 @@
+<div class="jumbotron p-4 full-page">
+    <h3>Party Records as on {{updatedAt}}</h3>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-9 my-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" [(ngModel)]="searchText" aria-label="Search"
+                        (ngModelChange)="onSearchTextChange()" placeholder="Search by party name or number">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary mx-2" type="button">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 my-2">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Sort By</label>
+                    </div>
+                    <select class="custom-select form-select" [(ngModel)]="sortBy" (ngModelChange)="onSortByChange()"
+                        id="inputGroupSelect01">
+                        <option value="name" selected>Name</option>
+                        <option value="balance">Balance</option>
+                        <option value="area">Area</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center" id="empty-list" *ngIf="this.records.length === 0; else elseBlock">
+        <h3>No data available!</h3>
+    </div>
+    <ng-template #elseBlock>
+        <div *ngFor="let record of records; index as i">
+            <app-list-item [record]="record" [index]="i"></app-list-item>
+        </div>
+    </ng-template>
+</div>
