@@ -12,7 +12,7 @@ export class HeaderComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopupComponent, {
-      width: '600px', // Set the desired width
+      width: '500px',
     });
   }
 }

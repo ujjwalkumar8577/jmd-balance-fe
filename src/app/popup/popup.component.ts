@@ -17,8 +17,8 @@ export class PopupComponent {
     if (this.selectedFile) {
       this.recordService.postFormData(this.password, this.selectedFile).subscribe(
         (response: any) => {
-          alert(JSON.stringify(response.mesage));
           this.closeDialog();
+          alert(response.message);
         },
         (error) => {
           alert(error.error.message);
@@ -30,9 +30,18 @@ export class PopupComponent {
   }
 
   onFileSelected(event: any) {
-    const fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      this.selectedFile = fileList[0];
+    const fileInput: HTMLInputElement = event.target;
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.selectedFile = fileInput.files[0];
+      const validFileTypeConditions = [
+        this.selectedFile.type === 'application/vnd.ms-excel',
+        this.selectedFile.name.endsWith('.xls'),
+        this.selectedFile.name.endsWith('.xlsx'),
+      ];
+      if (!validFileTypeConditions.some((condition) => condition)) {
+        this.selectedFile = null;
+        alert('Please select a valid excel file.');
+      }
     }
   }
 

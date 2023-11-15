@@ -20,18 +20,6 @@ export class HomeComponent {
   ngOnInit() {
     this.updatedAt = new Date().toLocaleString();
     this.sortBy = 'name'
-    // const record1 = new Record();
-    // record1.name = 'ABC Bakery';
-    // record1.area = 'Kareli';
-    // record1.contact = "9988776655";
-    // record1.balance = 3600;
-    // this.allRecords = [record1];
-    // const record2 = new Record();
-    // record2.name = 'BBC Bakery';
-    // record2.area = 'Himmatganj';
-    // record2.contact = "9988776655";
-    // record2.balance = 2000;
-    // this.allRecords = [record1, record2];
     this.allRecords = [];
     this.records = this.allRecords;
     this.fetchRecords({});
@@ -61,7 +49,7 @@ export class HomeComponent {
       } else if (this.sortBy === 'area') {
         return a.area.localeCompare(b.area);
       } else if (this.sortBy === 'balance') {
-        return a.balance - b.balance;
+        return b.balance - a.balance;
       }
       return 0;
     });
