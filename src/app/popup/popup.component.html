@@ -1,6 +1,7 @@
 <h2 class="text-center my-4">Update Records (Admin)</h2>
 <form class="text-center" (ngSubmit)="onSubmit()">
-    <input class="my-4 p-2" placeholder="Password" type="password" name="password" [(ngModel)]="password">
+    <input class="my-4 p-2" placeholder="Password" autocomplete="current-password" type="password"
+        name="password" [(ngModel)]="password">
     <div class="file-input my-4">
         <input #fileInput type="file" (change)="onFileSelected($event)">
     </div>
